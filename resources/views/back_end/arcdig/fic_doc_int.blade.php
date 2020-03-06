@@ -54,6 +54,16 @@
                             <b>Cargado Por</b>
                             <small><p class="pull-right">{{$bitacora[0]->name}}</p></small>
                         </li>
+                        <li class="list-group-item">
+                            <b><i class="fa fa-eye"></i> ¿Encontraste un error?</b>
+                            <small>
+                                <p class="pull-right">
+                                    <button class="btn btn-xs btn-primary" data-toggle="modal" data-target="#modal-err">
+                                        <i class="fa fa-send"></i> Notificar error a partes
+                                    </button>
+                                </p>
+                            </small>
+                        </li>
                     </ul>
                 </div>
                 <!-- /.box-body -->
@@ -375,8 +385,35 @@
                                             </div>
                                         </div>
                                     </li>
-                                @elseif($listado->tipoaccbitdocint==5)
+                                @elseif($listado->tipoaccbitdocint==6)
+                                    <li class="time-label">
+                        <span class="bg-red">
+                          {{date('d - m - Y',strtotime($listado -> fecbitdocint))}}
+                        </span>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-mail-forward bg-red"></i>
 
+                                        <div class="timeline-item">
+                                            <span class="time"><i class="fa fa-clock-o"></i> {{ $listado -> horabitdocint }}</span>
+
+                                            <h3 class="timeline-header">{{$listado->accbitdocint}}</h3>
+                                            <div class="timeline-body"><strong>Error en Digitalización:
+                                                    Notifica: {{ $listado->name }}</strong></div>
+                                            <div class="timeline-footer">
+                                                @if($listado->obspostdocint==1)
+                                                    <a class="btn btn-danger btn-xs">Error de Digitalización (PDF)</a>
+                                                @elseif($listado->obspostdocint==2)
+                                                    <a class="btn btn-danger btn-xs">Error en Materia (Texto)</a>
+                                                @elseif($listado->obspostdocint==3)
+                                                    <a class="btn btn-danger btn-xs">Error en Distribución (Interna /
+                                                        Externa)</a>
+                                                @elseif($listado->obspostdocint==4)
+                                                    <a class="btn btn-danger btn-xs">Otro error</a>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </li>
                                 @endif
                             @endforeach
                         </ul>
@@ -389,92 +426,39 @@
         <!-- /.col -->
     </div>
 
-    <div class="modal fade" id="modal-ec">
+    <div class="modal fade" id="modal-err">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span></button>
-                    <h4 class="modal-title">Formulario de Ingreso a Contraloría</h4>
+                    <h4 class="modal-title">Formulario Notificación de Error en Documento</h4>
                 </div>
                 <div class="modal-body">
                     <div class="box-body no-padding">
                         <div class="modal-content" id="resp_modal">
 
                         </div>
-                        <form class="form-horizontal" id="form_envio_cgr">
+                        <form class="form-horizontal" id="form_not_err">
                             <div class="box-body">
                                 <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-2 control-label">Envio a CGR</label>
+                                    <label for="inputEmail3" class="col-sm-2 control-label">Tipo de error</label>
                                     <div class="col-sm-10">
-                                        <input type="datetime-local" id="fechoraingcgr" name="fechoraingcgr"
-                                               class="form-control" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                            <input type="hidden" name="iddocintresaf" value="{{ $bitacora[0]->iddocint }}">
-                            <div class="box-footer">
-                                <button type="reset" class="btn btn-default">Cancelar Envío</button>
-                                <button type="button" id="btn_cgr_ing" class="btn btn-success pull-right"><i
-                                            class="fa fa-send-o"></i>
-                                    Confirmar envío del Documento
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-
-    <div class="modal fade" id="modal-rc">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span></button>
-                    <h4 class="modal-title">Formulario de Recepción desde Contraloría</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="box-body no-padding">
-                        <div class="modal-content" id="resp_modal_2">
-
-                        </div>
-                        <form class="form-horizontal" id="form_recep_cgr">
-                            <div class="box-body">
-                                <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-3 control-label">Recepción CGR</label>
-                                    <div class="col-sm-9">
-                                        <input type="datetime-local" id="reccgrdocint" name="reccgrdocint"
-                                               class="form-control" required>
-                                    </div>
-                                </div>
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <input type="hidden" name="iddocintresaf" value="{{ $bitacora[0]->iddocint }}">
-                                <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-3 control-label">Estado</label>
-                                    <div class="col-sm-9">
-                                        <select class="form-control" id="estcgrdocint" name="estcgrdocint">
-                                            <option value="1">Con Toma de Razón</option>
-                                            <option value="2">Cursa con Alcance</option>
-                                            <option value="3">Representada</option>
-                                            <option value="4">Se Abtiene</option>
+                                        <select class="form-control" name="tipo_err">
+                                            <option value="1">Error de Digitalización (PDF)</option>
+                                            <option value="2">Error en Materia (Texto)</option>
+                                            <option value="3">Error en Distribución (Interna / Externa)</option>
+                                            <option value="4">Otro error</option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
-                            <!-- /.box-body -->
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            <input type="hidden" name="iddocint" value="{{ $bitacora[0]->iddocint }}">
                             <div class="box-footer">
-                                <button type="reset" class="btn btn-default">Cancelar Envío</button>
-                                <button type="button" id="btn_cgr_egr" class="btn btn-success pull-right"><i
+                                <button type="button" id="btn_cgr_ing" class="btn btn-primary pull-right"><i
                                             class="fa fa-send-o"></i>
-                                    Confirmar recepción del Documento
+                                    Envíar notificación a Oficina de Partes
                                 </button>
                             </div>
                         </form>
@@ -488,7 +472,6 @@
         </div>
         <!-- /.modal-dialog -->
     </div>
-
 
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 
@@ -541,14 +524,14 @@
         $(document).on('ready', function () {
             $('#btn_cgr_ing').click(function () {
 
-                var url = "GuardarEnvCGR";
+                var url = "NotErrorPartes";
 
                 if ($("#fechoraingcgr").val() == "") {
                     $('#resp_modal').html("" +
                         "<div class=\"alert alert-warning alert-dismissable\">\n" +
                         "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">×</button>" +
                         "<h4><i class=\"icon fa fa-info\"></i> Alerta de Sistema!</h4>" +
-                        "Campo Envio a CGR es Obligatorio.\n" +
+                        "Campo Tipo Error es Obligatorio.\n" +
                         "</div>");
 
                     return;
@@ -557,17 +540,15 @@
                 $.ajax({
                     type: "post",
                     url: url,
-                    data: $("#form_envio_cgr").serialize(),
+                    data: $("#form_not_err").serialize(),
                     success: function (data) {
                         if (data == 1) {
                             $('#resp_modal').html("" +
                                 "<div class=\"alert alert-success alert-dismissable\">\n" +
                                 "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">×</button>" +
                                 "<h4><i class=\"icon fa fa-check\"></i> Mensaje de Sistema!</h4>" +
-                                "Documento Enviado a Casilla Electrónica Funcionaria.\n" +
+                                "Notificación de Error enviada a Oficina de Partes.\n" +
                                 "</div>");
-                            $("#fechoraingcgr").focus();
-                            $("#fechoraingcgr").css('border', '1px solid red');
                             location.reload();
                         }
                     },

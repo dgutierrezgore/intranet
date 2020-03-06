@@ -6,8 +6,7 @@ use Ajaxray\PHPWatermark\Watermark;
 use Illuminate\Http\Request;
 use DB;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\AvisoDocumentoInterno;
-use App\Mail\AvisoReEnvioDocumentoInterno;
+use App\Mail\AvisoErrorEnDocumento;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -143,7 +142,7 @@ class DocumentosInternosController extends Controller
                 ['op_bitacora_docs_internos.users_id', Auth::id()]
             ])
             ->orderby('op_bitacora_docs_internos.idbitdocint', 'DESC')
-        ->get();
+            ->get();
 
         return view('back_end.arcdig.fic_doc_int', [
             'bitacora' => $bitacora,
@@ -171,10 +170,51 @@ class DocumentosInternosController extends Controller
             'segobspostint' => $request->segobsintdocint,
             'cpbitdocint' => null,
             'documentos_internos_iddocint' => $request->iddocint,
-            'users_id' =>  Auth::id(),                                            //PENDIENTE AUTH !!!
+            'users_id' => Auth::id(),                                            //PENDIENTE AUTH !!!
         ]);
 
         echo '1';
+    }
+
+    public function notifica_error_partes(Request $request)
+    {
+
+        // Bitácora //
+        DB::table('op_bitacora_docs_internos')->insert([
+            'accbitdocint' => 'Notificación de Error',
+            'tipoaccbitdocint' => 6,
+            'fecbitdocint' => date('Y-m-d'),
+            'horabitdocint' => date('h:i:s'),
+            'obsenvficdocint' => null,
+            'forsoldocint' => null,
+            'refsolenvdocint' => null,
+            'obspostdocint' => $request->tipo_err,
+            'cpbitdocint' => null,
+            'documentos_internos_iddocint' => $request->iddocint,
+            'users_id' => Auth::id(),                                            //PENDIENTE AUTH !!!
+        ]);
+
+        $documento = DB::table('op_documentos_internos')
+            ->where('iddocint', $request->iddocint)
+            ->first();
+
+        $reporta = DB::table('users')
+            ->where('id', Auth::id())
+            ->first();
+
+        $data_correo = array(
+            'fecha' => date('Y-m-d'),
+            'tipoerror' => $request->tipo_err,
+            'numdoc' => $request->iddocint,
+            'foliocompdocint' => $documento->foliocompdocint,
+            'reporta' => $reporta->name
+        );
+
+        Mail::to('dgutierrez@gorebiobio.cl')
+            ->send(new AvisoErrorEnDocumento($data_correo));
+
+        echo '1';
+
     }
 }
 
