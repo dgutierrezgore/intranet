@@ -8,21 +8,33 @@
             <a href="/home"><img src="img/logo.png" alt="Logo Gobierno Regional del Biobío"></a>
         </center>
         <ul class="sidebar-menu">
-            <li class="active"><a href="{{ url('home') }}"><i class='fa fa-dashboard'></i> <span>Home Consola</span></a></li>
+            <li class="active"><a href="{{ url('home') }}"><i class='fa fa-home'></i> <span>Inicio Intranet</span></a>
+            </li>
             <li class="header">- CORRESPONDENCIA DIGITAL -</li>
             <li class="treeview">
-                <a href="#"><i class='fa fa-book'></i> <span>Mis Documentos</span> <i
-                        class="fa fa-angle-down pull-right"></i></a>
-                <ul class="treeview-menu">
-                    <li><a href="/Partes"><i class="fa fa-building"></i> Oficina de Partes</a></li>
-                    <li><a href="/CentralDocumentacion"><i class="fa fa-folder-open"></i> Central de Documentación</a></li>
-                    <li><a href="/"><i class="fa fa-archive"></i> Archivo Personal</a></li>
-                </ul>
+                <a href="#"><i class='fa fa-book'></i> <span>Oficina de Partes</span> <span
+                            class="pull-right-container">
+
+ <small class="label bg-blue"><i class="fa fa-smile-o"> </i></small>            </span>
+
+                    <ul class="treeview-menu">
+                        <li><a href="/Partes"><i class="fa fa-file-pdf-o"></i> Documentos Internos</a></li>
+                        <li><a href="/DocsTags"><i class="fa fa-tags"></i> Búsqueda por Tags</a></li>
+                    </ul>
+            </li>
+            <li class="treeview">
+                <a href="#"><i class='fa fa-archive'></i> <span>Repositorio Personal</span> <span
+                            class="pull-right-container">
+
+ <small class="label bg-blue"><i class="fa fa-smile-o"> </i></small>            </span>
+                    <ul class="treeview-menu">
+                        <li><a href="/"><i class="fa fa-envelope-o"></i> Documentos Recibidos</a></li>
+                    </ul>
             </li>
             <li class="header">- TRAMITACIÓN DIGITAL -</li>
 
             <li class="treeview">
-                <a href="#"><i class='fa fa-dollar'></i> <span>DEPTO. FAO</span> <i
+                <a href="#"><i class='fa fa-dollar'></i> <span>Depto. FAO</span> <i
                             class="fa fa-angle-down pull-right"></i></a>
                 <ul class="treeview-menu">
                     <li><a href="/"><i class="fa fa-file-pdf-o"></i> Próximamente</a></li>
@@ -30,16 +42,16 @@
                 </ul>
             </li>
             <li class="treeview">
-                <a href="#"><i class='fa fa-users'></i> <span>DEPTO. DGDP</span> <i
-                        class="fa fa-angle-down pull-right"></i></a>
+                <a href="#"><i class='fa fa-users'></i> <span>Depto. DGDP</span> <i
+                            class="fa fa-angle-down pull-right"></i></a>
                 <ul class="treeview-menu">
                     <li><a href="/"><i class="fa fa-file-pdf-o"></i> Próximamente</a></li>
                     <li><a href="/"><i class="fa fa-plus-circle"></i> -</a></li>
                 </ul>
             </li>
             <li class="treeview">
-                <a href="#"><i class='fa fa-keyboard-o'></i> <span>UNID. INFORMÁTICA</span> <i
-                        class="fa fa-angle-down pull-right"></i></a>
+                <a href="#"><i class='fa fa-keyboard-o'></i> <span>Unid. Informática</span> <i
+                            class="fa fa-angle-down pull-right"></i></a>
                 <ul class="treeview-menu">
                     <li><a href="/"><i class="fa fa-file-pdf-o"></i> Próximamente</a></li>
                     <li><a href="/"><i class="fa fa-plus-circle"></i> -</a></li>
@@ -47,8 +59,8 @@
             </li>
 
             <li class="treeview">
-                <a href="#"><i class='fa fa-wrench'></i> <span>UNID. OPERACIONES</span> <i
-                        class="fa fa-angle-down pull-right"></i></a>
+                <a href="#"><i class='fa fa-wrench'></i> <span>Unid. Operaciones</span> <i
+                            class="fa fa-angle-down pull-right"></i></a>
                 <ul class="treeview-menu">
                     <li><a href="/"><i class="fa fa-file-pdf-o"></i> Próximamente</a></li>
                     <li><a href="/"><i class="fa fa-plus-circle"></i> -</a></li>
@@ -64,6 +76,8 @@
                     <li><a href="/"><i class="fa fa-file-pdf-o"></i> -</a></li>
                 </ul>
             </li>
+            <li><a href="/Versiones"><i class='fa fa-code'></i> <span>Control de Versiones</span> <small class="label bg-blue"><i
+                                class="fa fa-smile-o"> </i></small></a></li>
             <li><a href="{{ url('/logout') }}"
                    onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">

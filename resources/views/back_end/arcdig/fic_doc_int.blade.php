@@ -69,6 +69,61 @@
                 <!-- /.box-body -->
             </div>
             <!-- /.box -->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h4 class="box-title"><i class="fa fa-tags"></i> Tags</h4>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    @foreach($tag_docu as $listado)
+                        @if($listado->icotag == 1)
+                            @if($listado->coloricotag== 1)
+                                <button class="btn btn-xs btn-danger">
+                                    <i class="fa fa-info"></i> {{ $listado->nomtag }}
+                                </button>
+                            @elseif($listado->coloricotag== 2)
+                                <button class="btn btn-xs btn-warning">
+                                    <i class="fa fa-info"></i> {{ $listado->nomtag }}
+                                </button>
+                            @elseif($listado->coloricotag== 3)
+                                <button class="btn btn-xs btn-success">
+                                    <i class="fa fa-info"></i> {{ $listado->nomtag }}
+                                </button>
+                            @endif
+                        @elseif($listado->icotag == 2)
+                            @if($listado->coloricotag== 1)
+                                <button class="btn btn-xs btn-danger">
+                                    <i class="fa fa-warning"></i> {{ $listado->nomtag }}
+                                </button>
+                            @elseif($listado->coloricotag== 2)
+                                <button class="btn btn-xs btn-warning">
+                                    <i class="fa fa-warning"></i> {{ $listado->nomtag }}
+                                </button>
+                            @elseif($listado->coloricotag== 3)
+                                <button class="btn btn-xs btn-success">
+                                    <i class="fa fa-warning"></i> {{ $listado->nomtag }}
+                                </button>
+                            @endif
+                        @elseif($listado->icotag == 3)
+                            @if($listado->coloricotag== 1)
+                                <button class="btn btn-xs btn-danger">
+                                    <i class="fa fa-search"></i> {{ $listado->nomtag }}
+                                </button>
+                            @elseif($listado->coloricotag== 2)
+                                <button class="btn btn-xs btn-warning">
+                                    <i class="fa fa-search"></i> {{ $listado->nomtag }}
+                                </button>
+                            @elseif($listado->coloricotag== 3)
+                                <button class="btn btn-xs btn-success">
+                                    <i class="fa fa-search"></i> {{ $listado->nomtag }}
+                                </button>
+                            @endif
+                        @endif
+                    @endforeach
+                </div>
+                <!-- /.box-body -->
+            </div>
+
             <div class="box box-success">
                 <div class="box-header with-border">
                     <h4 class="box-title"><i class="fa fa-random"></i> Distribución</h4>
@@ -211,6 +266,8 @@
                     </li>
                     <li><a href="#anotaciones" data-toggle="tab"><i class="fa fa-pencil"></i> Anotar Observaciones</a>
                     </li>
+                    <li><a href="#tags" data-toggle="tab"><i class="fa fa-tags"></i> Mantenedor de Tags</a>
+                    </li>
                     <li><a href="#bitacora" data-toggle="tab"><i class="fa fa-history"></i> Bitácora Documento</a></li>
                 </ul>
                 <div class="tab-content">
@@ -275,6 +332,122 @@
                         </div>
                     </div>
 
+                    <div class="tab-pane" id="tags">
+
+                        <div class="panel panel-info">
+                            <div class="panel-heading"><i class="fa fa-tags"></i> Mantenedor General de Tags
+                                <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal-tags">
+                                    <i class="fa fa-plus-circle"></i>
+                                </button>
+                            </div>
+
+                            <div class="panel-body">
+                                @foreach($mis_tags as $listado)
+                                    @if($listado->icotag == 1)
+                                        @if($listado->coloricotag== 1)
+                                            <button class="btn btn-xs btn-danger">
+                                                <i class="fa fa-info"></i> {{ $listado->nomtag }}
+                                            </button>
+                                        @elseif($listado->coloricotag== 2)
+                                            <button class="btn btn-xs btn-warning">
+                                                <i class="fa fa-info"></i> {{ $listado->nomtag }}
+                                            </button>
+                                        @elseif($listado->coloricotag== 3)
+                                            <button class="btn btn-xs btn-success">
+                                                <i class="fa fa-info"></i> {{ $listado->nomtag }}
+                                            </button>
+                                        @endif
+                                    @elseif($listado->icotag == 2)
+                                        @if($listado->coloricotag== 1)
+                                            <button class="btn btn-xs btn-danger">
+                                                <i class="fa fa-warning"></i> {{ $listado->nomtag }}
+                                            </button>
+                                        @elseif($listado->coloricotag== 2)
+                                            <button class="btn btn-xs btn-warning">
+                                                <i class="fa fa-warning"></i> {{ $listado->nomtag }}
+                                            </button>
+                                        @elseif($listado->coloricotag== 3)
+                                            <button class="btn btn-xs btn-success">
+                                                <i class="fa fa-warning"></i> {{ $listado->nomtag }}
+                                            </button>
+                                        @endif
+                                    @elseif($listado->icotag == 3)
+                                        @if($listado->coloricotag== 1)
+                                            <button class="btn btn-xs btn-danger">
+                                                <i class="fa fa-search"></i> {{ $listado->nomtag }}
+                                            </button>
+                                        @elseif($listado->coloricotag== 2)
+                                            <button class="btn btn-xs btn-warning">
+                                                <i class="fa fa-search"></i> {{ $listado->nomtag }}
+                                            </button>
+                                        @elseif($listado->coloricotag== 3)
+                                            <button class="btn btn-xs btn-success">
+                                                <i class="fa fa-search"></i> {{ $listado->nomtag }}
+                                            </button>
+                                        @endif
+                                    @endif
+                                @endforeach
+                            </div>
+                        </div>
+
+                        <div class="panel panel-success">
+                            <div class="panel-heading"><i class="fa fa-tag"></i> Asignar Tags a este Documento
+                                <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal-agg_tag">
+                                    <i class="fa fa-plus-circle"></i>
+                                </button>
+                            </div>
+
+                            <div class="panel-body">
+                                @foreach($tag_docu as $listado)
+                                    @if($listado->icotag == 1)
+                                        @if($listado->coloricotag== 1)
+                                            <button class="btn btn-xs btn-danger">
+                                                <i class="fa fa-info"></i> {{ $listado->nomtag }}
+                                            </button>
+                                        @elseif($listado->coloricotag== 2)
+                                            <button class="btn btn-xs btn-warning">
+                                                <i class="fa fa-info"></i> {{ $listado->nomtag }}
+                                            </button>
+                                        @elseif($listado->coloricotag== 3)
+                                            <button class="btn btn-xs btn-success">
+                                                <i class="fa fa-info"></i> {{ $listado->nomtag }}
+                                            </button>
+                                        @endif
+                                    @elseif($listado->icotag == 2)
+                                        @if($listado->coloricotag== 1)
+                                            <button class="btn btn-xs btn-danger">
+                                                <i class="fa fa-warning"></i> {{ $listado->nomtag }}
+                                            </button>
+                                        @elseif($listado->coloricotag== 2)
+                                            <button class="btn btn-xs btn-warning">
+                                                <i class="fa fa-warning"></i> {{ $listado->nomtag }}
+                                            </button>
+                                        @elseif($listado->coloricotag== 3)
+                                            <button class="btn btn-xs btn-success">
+                                                <i class="fa fa-warning"></i> {{ $listado->nomtag }}
+                                            </button>
+                                        @endif
+                                    @elseif($listado->icotag == 3)
+                                        @if($listado->coloricotag== 1)
+                                            <button class="btn btn-xs btn-danger">
+                                                <i class="fa fa-search"></i> {{ $listado->nomtag }}
+                                            </button>
+                                        @elseif($listado->coloricotag== 2)
+                                            <button class="btn btn-xs btn-warning">
+                                                <i class="fa fa-search"></i> {{ $listado->nomtag }}
+                                            </button>
+                                        @elseif($listado->coloricotag== 3)
+                                            <button class="btn btn-xs btn-success">
+                                                <i class="fa fa-search"></i> {{ $listado->nomtag }}
+                                            </button>
+                                        @endif
+                                    @endif
+                                @endforeach
+                            </div>
+                        </div>
+
+                    </div>
+
                     <div class="tab-pane" id="bitacora">
 
                         <ul class="timeline timeline-inverse">
@@ -289,7 +462,8 @@
                                         <i class="fa fa-check-circle bg-green"></i>
 
                                         <div class="timeline-item">
-                                            <span class="time"><i class="fa fa-clock-o"></i> {{$listado->horabitdocint}}</span>
+                                        <span class="time"><i
+                                                    class="fa fa-clock-o"></i> {{$listado->horabitdocint}}</span>
 
                                             <h3 class="timeline-header"> {{$listado->accbitdocint}}</h3>
 
@@ -398,8 +572,7 @@
                                             <span class="time"><i class="fa fa-clock-o"></i> {{ $listado -> horabitdocint }}</span>
 
                                             <h3 class="timeline-header">{{$listado->accbitdocint}}</h3>
-                                            <div class="timeline-body"><strong>Error en Digitalización:
-                                                    Notifica: {{ $listado->name }}</strong></div>
+                                            <div class="timeline-body"><strong>Error en Documento:</strong></div>
                                             <div class="timeline-footer">
                                                 @if($listado->obspostdocint==1)
                                                     <a class="btn btn-danger btn-xs">Error de Digitalización (PDF)</a>
@@ -424,6 +597,131 @@
             <!-- /.nav-tabs-custom -->
         </div>
         <!-- /.col -->
+    </div>
+
+    <div class="modal fade" id="modal-tags">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">Formulario Creación de Tags Personales</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="box-body no-padding">
+                        <div class="modal-content" id="resp_modal">
+
+                        </div>
+                        <form class="form-horizontal" id="form_gen_tag">
+                            <div class="box-body">
+
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-2 control-label">Nombre Tag</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" type="text" id="nombre_tag" name="nombre_tag"
+                                               maxlength="20" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-2 control-label">Color Tag</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" name="color_tag">
+                                            <option value="1">Rojo</option>
+                                            <option value="2">Amarillo</option>
+                                            <option value="3">Verde</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-2 control-label">Ícono Tag</label>
+                                    <div class="radio col-sm-1">
+                                        <label>
+                                            <input type="radio" name="icotag" value="1"
+                                                   checked="">
+                                            <i class="fa fa-info"></i>
+                                        </label>
+                                    </div>
+                                    <div class="radio col-sm-1">
+                                        <label>
+                                            <input type="radio" name="icotag" value="2"
+                                                   checked="">
+                                            <i class="fa fa-warning"></i>
+                                        </label>
+                                    </div>
+                                    <div class="radio col-sm-1">
+                                        <label>
+                                            <input type="radio" name="icotag" value="3"
+                                                   checked="">
+                                            <i class="fa fa-search"></i>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            <div class="box-footer">
+                                <button type="button" id="btn_tag_new" class="btn btn-primary pull-right"><i
+                                            class="fa fa-send-o"></i>
+                                    Crear Tag Personalizado
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    <div class="modal fade" id="modal-agg_tag">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">Formulario Agrega Tag al Documento</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="box-body no-padding">
+                        <div class="modal-content" id="resp_modal">
+
+                        </div>
+                        <form class="form-horizontal" id="form_agg_tag_doc">
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-2 control-label">Tag a Agregar</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" name="tag_personal">
+                                            @foreach($mis_tags as $listado)
+                                                <option value="{{ $listado->idmistags }}">{{ $listado->nomtag }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            <input type="hidden" name="iddocint" value="{{ $bitacora[0]->iddocint }}">
+                            <div class="box-footer">
+                                <button type="button" id="btn_tag_ing" class="btn btn-primary pull-right"><i
+                                            class="fa fa-tag"></i>
+                                    Agregar tag al documento
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
     </div>
 
     <div class="modal fade" id="modal-err">
@@ -474,6 +772,84 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+
+    <script>
+        $(document).on('ready', function () {
+            $('#btn_tag_new').click(function () {
+
+                var url = "GenTags";
+
+                if ($("#nombre_tag").val() == "") {
+                    $('#resp').html("" +
+                        "<div class=\"alert alert-warning alert-dismissable\">\n" +
+                        "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">×</button>" +
+                        "<h4><i class=\"icon fa fa-warning\"></i> ¡ALERTA DE SISTEMA!</h4>" +
+                        "Campo \"Observaciones al Documento\" es obligatorio.\n" +
+                        "</div>");
+                    $("#nombre_tag").focus();
+                    $("#nombre_tag").css('border', '1px solid red');
+                    return;
+                }
+
+                $.ajax({
+                    type: "post",
+                    url: url,
+                    data: $("#form_gen_tag").serialize(),
+                    success: function (data) {
+                        if (data == 1) {
+                            $('#resp').html("" +
+                                "<div class=\"alert alert-success alert-dismissable\">\n" +
+                                "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">×</button>" +
+                                "<h4><i class=\"icon fa fa-check\"></i> ¡MENSAJE DE SISTEMA!</h4>" +
+                                "Anotación registrada correctamente en la Bitácora del Documento.\n" +
+                                "</div>");
+
+                            location.reload();
+                        }
+                    },
+                    error: function (data) {
+                        alert(data);
+                        alert('ERROR');
+                    }
+                });
+
+
+            });
+        });
+    </script>
+
+    <script>
+        $(document).on('ready', function () {
+            $('#btn_tag_ing').click(function () {
+
+                var url = "AggTagDoc";
+
+                $.ajax({
+                    type: "post",
+                    url: url,
+                    data: $("#form_agg_tag_doc").serialize(),
+                    success: function (data) {
+                        if (data == 1) {
+                            $('#resp').html("" +
+                                "<div class=\"alert alert-success alert-dismissable\">\n" +
+                                "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">×</button>" +
+                                "<h4><i class=\"icon fa fa-check\"></i> ¡MENSAJE DE SISTEMA!</h4>" +
+                                "Anotación registrada correctamente en la Bitácora del Documento.\n" +
+                                "</div>");
+
+                            location.reload();
+                        }
+                    },
+                    error: function (data) {
+                        alert(data);
+                        alert('ERROR');
+                    }
+                });
+
+
+            });
+        });
+    </script>
 
     <script>
         $(document).on('ready', function () {

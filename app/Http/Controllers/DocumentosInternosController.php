@@ -34,6 +34,7 @@ class DocumentosInternosController extends Controller
                 ['estadolectdocint', 1],
                 ['op_lec_doc_int.disdocintfunc', 1]
             ])
+            ->orderby('fechadocint', 'desc')
             ->get();
 
         $docs_dist = DB::table('op_lec_doc_int')
@@ -44,6 +45,7 @@ class DocumentosInternosController extends Controller
                 ['estadolectdocint', 1],
                 ['op_lec_doc_int.disdocintfunc', 2]
             ])
+            ->orderby('fechadocint', 'desc')
             ->get();
 
         $docs_copia = DB::table('op_lec_doc_int')
@@ -54,6 +56,7 @@ class DocumentosInternosController extends Controller
                 ['estadolectdocint', 1],
                 ['op_lec_doc_int.disdocintfunc', 3]
             ])
+            ->orderby('fechadocint', 'desc')
             ->get();
 
         return view('back_end.arcdig.home', [
@@ -144,12 +147,26 @@ class DocumentosInternosController extends Controller
             ->orderby('op_bitacora_docs_internos.idbitdocint', 'DESC')
             ->get();
 
+        $mis_tags = DB::table('op_mis_tags')
+            ->where('users_id', '=', Auth::id())
+            ->get();
+
+        $tag_docu = DB::table('op_tag_docs_int')
+            ->join('op_mis_tags', 'op_mis_tags.idmistags', 'op_tag_docs_int.op_mis_tags_idmistags')
+            ->where([
+                ['op_documentos_internos_iddocint', '=', $id],
+                ['op_mis_tags_users_id', Auth::id()]
+            ])
+            ->get();
+
         return view('back_end.arcdig.fic_doc_int', [
             'bitacora' => $bitacora,
             'dis_int' => $dist_interna,
             'dis_ext' => $dist_externa,
             'pdf' => $pdf,
-            'bit_pers' => $bit_pers
+            'bit_pers' => $bit_pers,
+            'mis_tags' => $mis_tags,
+            'tag_docu' => $tag_docu
         ]);
 
     }
@@ -179,6 +196,25 @@ class DocumentosInternosController extends Controller
     public function notifica_error_partes(Request $request)
     {
 
+        if ($request->tipo_err == 1) {
+            $error = 'Error Digitalizacion';
+        } elseif ($request->tipo_err == 2) {
+            $error = 'Error Materia';
+        } elseif ($request->tipo_err == 3) {
+            $error = 'Error Distribución';
+        } elseif ($request->tipo_err == 4) {
+            $error = 'Otro Error';
+        }
+
+        // Error //
+        DB::table('op_error_docs_int')->insert([
+            'fecreperrint' => date('Y-m-d h:i:s'),
+            'tipoerror' => $error,
+            'estadoerrdocint' => '0',
+            'listado_funcionarios_idfunc' => Auth::user()->idunicfunc,
+            'op_documentos_internos_iddocint' => $request->iddocint
+        ]);
+
         // Bitácora //
         DB::table('op_bitacora_docs_internos')->insert([
             'accbitdocint' => 'Notificación de Error',
@@ -191,7 +227,7 @@ class DocumentosInternosController extends Controller
             'obspostdocint' => $request->tipo_err,
             'cpbitdocint' => null,
             'documentos_internos_iddocint' => $request->iddocint,
-            'users_id' => Auth::id(),                                            //PENDIENTE AUTH !!!
+            'users_id' => Auth::id(),
         ]);
 
         $documento = DB::table('op_documentos_internos')
@@ -211,9 +247,98 @@ class DocumentosInternosController extends Controller
         );
 
         Mail::to('dgutierrez@gorebiobio.cl')
+            ->cc('partes@gorebiobio.cl')
             ->send(new AvisoErrorEnDocumento($data_correo));
 
         echo '1';
+
+    }
+
+    public function ideas(Request $request)
+    {
+
+        DB::table('sys_ideas_digital')->insert([
+            'fecidea' => date('Y-m-d h:i:s'),
+            'idea' => $request->ideas,
+            'estadoidea' => 1,
+            'users_id' => Auth::id(),
+        ]);
+
+        return back()->withErrors(['mensaje' => ['Gracias por dejarnos tu mensaje.']]);
+
+    }
+
+    public function creatag(Request $request)
+    {
+
+        DB::table('op_mis_tags')->insert([
+            'feccreatag' => date('Y-m-d h:i:s'),
+            'nomtag' => $request->nombre_tag,
+            'icotag' => $request->icotag,
+            'coloricotag' => $request->color_tag,
+            'tipotag' => 1,
+            'estadotag' => 1,
+            'users_id' => Auth::id(),
+        ]);
+
+        echo '1';
+    }
+
+    public function agrega_tag_doc(Request $request)
+    {
+
+        DB::table('op_tag_docs_int')->insert([
+            'fectagdocint' => date('Y-m-d h:i:s'),
+            'idunictag' => $request->iddocint . '-' . $request->tag_personal,
+            'esttagdocint' => 1,
+            'op_mis_tags_idmistags' => $request->tag_personal,
+            'op_documentos_internos_iddocint' => $request->iddocint,
+            'op_mis_tags_users_id' => Auth::id(),
+        ]);
+
+        echo '1';
+    }
+
+    public function busq_tags()
+    {
+
+        $mis_tags = DB::table('op_mis_tags')
+            ->where('users_id', '=', Auth::id())
+            ->get();
+
+        return view('back_end.arcdig.bus_tag', [
+            'mis_tags' => $mis_tags
+        ]);
+
+    }
+
+    public function listado_tags(Request $request)
+    {
+
+        $id_usuario = Auth::id();
+        $id_tag = $request->idtags;
+
+        $nombre_tag = DB::table('op_mis_tags')
+            ->where('idmistags', '=', $id_tag)
+            ->first();
+
+        $documentos_tags = DB::table('op_tag_docs_int')
+            ->join('op_documentos_internos', 'op_documentos_internos.iddocint', 'op_tag_docs_int.op_documentos_internos_iddocint')
+            ->join('op_tipos_docs_internos', 'op_tipos_docs_internos.iddocsint', 'op_documentos_internos.tipos_docs_internos_iddocsint')
+            ->where([
+                ['op_mis_tags_idmistags', '=', $id_tag],
+                ['op_mis_tags_users_id', Auth::id()]
+            ])
+            ->get();
+
+        return view('back_end.arcdig.grillatags', ['doc_tag' => $documentos_tags, 'nombre_tag' => $nombre_tag]);
+
+    }
+
+    public function versiones()
+    {
+
+        return view('back_end.versiones');
 
     }
 }
