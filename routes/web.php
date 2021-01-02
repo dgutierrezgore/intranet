@@ -34,6 +34,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('/GrillaTags', 'DocumentosInternosController@listado_tags');
 
+    Route::get('/Documentos2020', 'DocumentosInternosController@archivo2020');
+
 
 });
 

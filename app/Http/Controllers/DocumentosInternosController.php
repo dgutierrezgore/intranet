@@ -29,6 +29,7 @@ class DocumentosInternosController extends Controller
         $docs_propios = DB::table('op_lec_doc_int')
             ->join('op_documentos_internos', 'op_documentos_internos.iddocint', 'op_lec_doc_int.op_documentos_internos_iddocint')
             ->join('op_tipos_docs_internos', 'op_tipos_docs_internos.iddocsint', 'op_documentos_internos.tipos_docs_internos_iddocsint')
+            ->whereYear('op_documentos_internos.fechadocint', date('Y'))
             ->where([
                 ['op_lec_doc_int.listado_funcionarios_idfunc', $id_func],
                 ['estadolectdocint', 1],
@@ -40,6 +41,7 @@ class DocumentosInternosController extends Controller
         $docs_dist = DB::table('op_lec_doc_int')
             ->join('op_documentos_internos', 'op_documentos_internos.iddocint', 'op_lec_doc_int.op_documentos_internos_iddocint')
             ->join('op_tipos_docs_internos', 'op_tipos_docs_internos.iddocsint', 'op_documentos_internos.tipos_docs_internos_iddocsint')
+            ->whereYear('op_documentos_internos.fechadocint', date('Y'))
             ->where([
                 ['op_lec_doc_int.listado_funcionarios_idfunc', $id_func],
                 ['estadolectdocint', 1],
@@ -51,6 +53,7 @@ class DocumentosInternosController extends Controller
         $docs_copia = DB::table('op_lec_doc_int')
             ->join('op_documentos_internos', 'op_documentos_internos.iddocint', 'op_lec_doc_int.op_documentos_internos_iddocint')
             ->join('op_tipos_docs_internos', 'op_tipos_docs_internos.iddocsint', 'op_documentos_internos.tipos_docs_internos_iddocsint')
+            ->whereYear('op_documentos_internos.fechadocint', date('Y'))
             ->where([
                 ['op_lec_doc_int.listado_funcionarios_idfunc', $id_func],
                 ['estadolectdocint', 1],
@@ -339,6 +342,57 @@ class DocumentosInternosController extends Controller
     {
 
         return view('back_end.versiones');
+
+    }
+
+    public function archivo2020()
+    {
+
+        $id_func = Auth::user()->idunicfunc;
+
+        // Documentos Propios
+
+        $docs_propios = DB::table('op_lec_doc_int')
+            ->join('op_documentos_internos', 'op_documentos_internos.iddocint', 'op_lec_doc_int.op_documentos_internos_iddocint')
+            ->join('op_tipos_docs_internos', 'op_tipos_docs_internos.iddocsint', 'op_documentos_internos.tipos_docs_internos_iddocsint')
+            ->whereYear('op_documentos_internos.fechadocint', '2020')
+            ->where([
+                ['op_lec_doc_int.listado_funcionarios_idfunc', $id_func],
+                ['estadolectdocint', 1],
+                ['op_lec_doc_int.disdocintfunc', 1]
+            ])
+            ->orderby('fechadocint', 'desc')
+            ->get();
+
+        $docs_dist = DB::table('op_lec_doc_int')
+            ->join('op_documentos_internos', 'op_documentos_internos.iddocint', 'op_lec_doc_int.op_documentos_internos_iddocint')
+            ->join('op_tipos_docs_internos', 'op_tipos_docs_internos.iddocsint', 'op_documentos_internos.tipos_docs_internos_iddocsint')
+            ->whereYear('op_documentos_internos.fechadocint', '2020')
+            ->where([
+                ['op_lec_doc_int.listado_funcionarios_idfunc', $id_func],
+                ['estadolectdocint', 1],
+                ['op_lec_doc_int.disdocintfunc', 2]
+            ])
+            ->orderby('fechadocint', 'desc')
+            ->get();
+
+        $docs_copia = DB::table('op_lec_doc_int')
+            ->join('op_documentos_internos', 'op_documentos_internos.iddocint', 'op_lec_doc_int.op_documentos_internos_iddocint')
+            ->join('op_tipos_docs_internos', 'op_tipos_docs_internos.iddocsint', 'op_documentos_internos.tipos_docs_internos_iddocsint')
+            ->whereYear('op_documentos_internos.fechadocint', '2020')
+            ->where([
+                ['op_lec_doc_int.listado_funcionarios_idfunc', $id_func],
+                ['estadolectdocint', 1],
+                ['op_lec_doc_int.disdocintfunc', 3]
+            ])
+            ->orderby('fechadocint', 'desc')
+            ->get();
+
+        return view('back_end.arcdig.2020', [
+            'docs_propios' => $docs_propios,
+            'docs_dist' => $docs_dist,
+            'docs_copia' => $docs_copia
+        ]);
 
     }
 }

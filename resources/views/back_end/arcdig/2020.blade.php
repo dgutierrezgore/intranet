@@ -5,11 +5,11 @@
 @endsection
 
 @section('contentheader_title')
-    Resoluciones Exentas, Afectas y Ordinarios
+    Archivo Resoluciones Exentas, Afectas y Ordinarios
 @endsection
 
 @section('contentheader_description')
-    - Grilla {{ date('Y') }}
+    - Grilla 2020
 @endsection
 
 @section('main-content')

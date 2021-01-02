@@ -9,7 +9,7 @@
 @endsection
 
 @section('contentheader_description')
-    - Última Versión V.02
+    - Última Versión V.03
 @endsection
 
 @section('main-content')
@@ -20,8 +20,29 @@
 
                 <div class="panel panel-warning">
                     <div class="panel-heading">
+                        <i class="fa fa-newspaper-o"></i> <strong>Cuadro Panel de Novedades al 04 de Enero 2021</strong>
+                        <small>V.03</small>
+                    </div>
+
+                    <div class="panel-body">
+                        Hemos incorporado este panel de novedades para que revises los avances de digitalización
+                        <span
+                                class="pull-right-container">
+
+              <small class="label bg-blue"><i class="fa fa-smile-o"> </i></small>
+            </span>
+                    </div>
+                    <div class="panel-body">
+                        <ul>
+                            <i class="fa fa-check"></i> Se incorpora el año 2021 y bandeja archivo de documentos 2020.
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="panel panel-info">
+                    <div class="panel-heading">
                         <i class="fa fa-newspaper-o"></i> <strong>Cuadro Panel de Novedades al 29 de Mayo 2020</strong>
-                        <small>V.02</small>
+                        <small>V.03</small>
                     </div>
 
                     <div class="panel-body">

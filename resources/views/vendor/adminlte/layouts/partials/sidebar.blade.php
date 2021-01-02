@@ -19,6 +19,7 @@
 
                     <ul class="treeview-menu">
                         <li><a href="/Partes"><i class="fa fa-file-pdf-o"></i> Documentos Internos</a></li>
+                        <li><a href="/Documentos2020"><i class="fa fa-archive"></i> Documentos Internos 2020</a></li>
                         <li><a href="/DocsTags"><i class="fa fa-tags"></i> Búsqueda por Tags</a></li>
                     </ul>
             </li>
@@ -31,7 +32,7 @@
                         <li><a href="/"><i class="fa fa-envelope-o"></i> Documentos Recibidos</a></li>
                     </ul>
             </li>
-            <li class="header">- TRAMITACIÓN DIGITAL -</li>
+            <li class="header">- TRAMITACIÓN INTERNA DIGITAL -</li>
 
             <li class="treeview">
                 <a href="#"><i class='fa fa-dollar'></i> <span>Depto. FAO</span> <i
@@ -76,7 +77,8 @@
                     <li><a href="/"><i class="fa fa-file-pdf-o"></i> -</a></li>
                 </ul>
             </li>
-            <li><a href="/Versiones"><i class='fa fa-code'></i> <span>Control de Versiones</span> <small class="label bg-blue"><i
+            <li><a href="/Versiones"><i class='fa fa-code'></i> <span>Control de Versiones</span> <small
+                            class="label bg-blue"><i
                                 class="fa fa-smile-o"> </i></small></a></li>
             <li><a href="{{ url('/logout') }}"
                    onclick="event.preventDefault();

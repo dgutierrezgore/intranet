@@ -16,7 +16,7 @@
          src="https://sitio.gorebiobio.cl/wp-content/themes/html5blank/img/auxi/logo-header-200x300.png" width="100"
          height="135" alt="CNCA"/>
     <br>
-    <h2><strong>Bienvenido(a), Intranet</strong></h2>
+    <h2><strong>Bienvenido(a), Intranet Institucional</strong></h2>
     <h2>Gobierno Regional Región del Biobío</h2>
     <br>
     <hr>
@@ -88,10 +88,12 @@
 
         <p>
             <a href="http://www.gorebiobio.cl/" target="_blank">Gobierno Regional de la región del Biobío.</a><br/>
-            <a href="http://soporte.gorebiobio.cl/">Unidad Informática y Seguridad de la Información.</a><br/>
+            <a href="http://soporte.gorebiobio.cl/">Unidad Informática, Transformación Digital y Seguridad de la
+                Información.</a><br/>
             Av. Prat #525, Concepción.<br/>
-            Contacto: <a href="mailto:dgutierrez@gorebiobio.cl">dgutierrez@gorebiobio.cl - Anexo: 782</a><br/>
-            <span style="display:block"><small>V. UI /dgf 0.001-alpha</small></span>
+            Desarrollo y Soporte: <a href="mailto:dgutierrez@gorebiobio.cl">dgutierrez@gorebiobio.cl - Anexo:
+                782</a><br/>
+            <span style="display:block"><small>V. UI /dgf 0.003-beta</small></span>
         </p>
 
 

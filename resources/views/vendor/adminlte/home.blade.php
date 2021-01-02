@@ -44,8 +44,8 @@
 
                 <div class="panel panel-warning">
                     <div class="panel-heading">
-                        <i class="fa fa-newspaper-o"></i> <strong>Cuadro Panel de Novedades al 29 de Mayo 2020</strong>
-                        <small>V.02</small>
+                        <i class="fa fa-newspaper-o"></i> <strong>Cuadro Panel de Novedades al 04 de Enero 2021</strong>
+                        <small>V.03</small>
                     </div>
 
                     <div class="panel-body">
@@ -58,39 +58,29 @@
                     </div>
                     <div class="panel-body">
                         <ul>
-                            <i class="fa fa-check"></i> Se incorpora nuevo panel de novedades. <br>
-                            <i class="fa fa-check"></i> Se rediseñó el menú lateral para que el acceso a recursos
-                            institucionales sea más intuitivo.
-                            <br>
-                            <i class="fa fa-check"></i> Los Documentos Digitales provenientes de Of. de Partes se
-                            ordenan por último en llegar.
-                            <br>
-                            <i class="fa fa-check"></i> Se incorpora la posibilidad de agregar tags personalizados a los
-                            documentos
-                            para
-                            hacer más fácil su búsqueda.
-                            <br>
-                            <i class="fa fa-check"></i> Se configura la hora del sistema a horario Santiago - Chile.
-                            <br>
-                            <i class="fa fa-check"></i> Se añade botón para
-                            <strong>aportar ideas para la digitalización de la Intranet Institucional</strong>.
+                            <i class="fa fa-check"></i> Se incorpora el año 2021 y bandeja archivo de documentos 2020.
                         </ul>
                     </div>
                 </div>
 
                 <div class="panel panel-info">
-                    <div class="panel-heading"><i class="fa fa-rocket"></i> Próximamente en Digitalización de Intranet Gobierno Regional
+                    <div class="panel-heading"><i class="fa fa-rocket"></i> Próximamente en Digitalización de Intranet
+                        Gobierno Regional
                     </div>
 
                     <div class="panel-body">
                         <div class="panel-body">
                             <ul>
-                                <i class="fa fa-clock-o"></i> Se añadirá posibilidad de archivar documentos recibidos, dejando limpia la bandeja de entrada. <br>
+                                <i class="fa fa-clock-o"></i> Se añadirá posibilidad de archivar documentos recibidos,
+                                dejando limpia la bandeja de entrada. <br>
                                 <i class="fa fa-clock-o"></i> Se añadirá repositorio personal de documentos, catalogados
                                 por División, Departamento y Unidad emisora. <br>
-                                <i class="fa fa-clock-o"></i> Se añadirá posibilidad de configurar perfil con datos de cada uno de los funcionarios. <br>
-                                <i class="fa fa-clock-o"></i> Se añadirá posibilidad de agendar reuniones con cuenta Zoom Institucional. <br>
-                                <i class="fa fa-clock-o"></i> Se añadirá posibilidad de gestionar digitalmente algunos trámites de unidades y departamentos transversales DAF. <br>
+                                <i class="fa fa-clock-o"></i> Se añadirá posibilidad de configurar perfil con datos de
+                                cada uno de los funcionarios. <br>
+                                <i class="fa fa-clock-o"></i> Se añadirá posibilidad de agendar reuniones con cuenta
+                                Zoom Institucional. <br>
+                                <i class="fa fa-clock-o"></i> Se añadirá posibilidad de gestionar digitalmente algunos
+                                trámites de unidades y departamentos transversales DAF. <br>
                             </ul>
                         </div>
                     </div>
