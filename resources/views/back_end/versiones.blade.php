@@ -42,7 +42,7 @@
                 <div class="panel panel-info">
                     <div class="panel-heading">
                         <i class="fa fa-newspaper-o"></i> <strong>Cuadro Panel de Novedades al 29 de Mayo 2020</strong>
-                        <small>V.03</small>
+                        <small>V.02</small>
                     </div>
 
                     <div class="panel-body">

@@ -18,6 +18,8 @@
     $(document).on('click', 'span[rel="eliminar"]', function (e) {
         $(this).parent().parent().remove();
     })
+
+    $("#combo_dispo").prop('disabled', true);
 </script>
 
 <script>
@@ -103,5 +105,51 @@
         })
     })
 </script>
+<script>
+    $('#combo_equi').on('change', function () {
 
+// Guardamos el select de cursos
+        var cursos = $("#combo_dispo");
+
+        // Guardamos el select de alumnos
+        var alumnos = $(this);
+
+        if ($(this).val() != '') {
+            $.ajax({
+                data: {
+                    "id": alumnos.val(),
+                    "_token": "{{ csrf_token() }}",
+                },
+                url: 'TraeDisponibilidadHard',
+                type: 'POST',
+                dataType: 'json',
+
+                beforeSend: function () {
+                    alumnos.prop('disabled', true);
+                },
+                success: function (r) {
+                    alumnos.prop('disabled', false);
+
+                    // Limpiamos el select
+                    cursos.find('option').remove();
+
+                    $(r).each(function (i, v) { // indice, valor
+                        cursos.append('<option value="' + v.idinfdispohard + '">' + v.fechadispo + ' - ' + v.jornadadispo + '</option>');
+                    })
+
+                    cursos.prop('disabled', false);
+                },
+                error: function () {
+                    alert('Ocurrio un error en el servidor ..');
+                    alumnos.prop('disabled', false);
+                }
+            });
+        } else {
+            cursos.find('option').remove();
+            cursos.prop('disabled', true);
+        }
+
+    });
+
+</script>
 

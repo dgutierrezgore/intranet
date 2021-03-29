@@ -5,76 +5,30 @@
     <section class="sidebar">
 
         <center>
-            <a href="/home"><img src="img/logo.png" alt="Logo Gobierno Regional del Biobío"></a>
+            <a href="/home"><img src="../img/logo.png" alt="Logo Gobierno Regional del Biobío"></a>
         </center>
         <ul class="sidebar-menu">
             <li class="active"><a href="{{ url('home') }}"><i class='fa fa-home'></i> <span>Inicio Intranet</span></a>
             </li>
             <li class="header">- CORRESPONDENCIA DIGITAL -</li>
             <li class="treeview">
-                <a href="#"><i class='fa fa-book'></i> <span>Oficina de Partes</span> <span
-                            class="pull-right-container">
-
- <small class="label bg-blue"><i class="fa fa-smile-o"> </i></small>            </span>
-
+                <a href="#"><i class='fa fa-book'></i> <span>Oficina de Partes</span>
+                    <span class="pull-right-container">
+                    <small class="label bg-blue"><i class="fa fa-smile-o"> </i></small></span>
                     <ul class="treeview-menu">
                         <li><a href="/Partes"><i class="fa fa-file-pdf-o"></i> Documentos Internos</a></li>
                         <li><a href="/Documentos2020"><i class="fa fa-archive"></i> Documentos Internos 2020</a></li>
                         <li><a href="/DocsTags"><i class="fa fa-tags"></i> Búsqueda por Tags</a></li>
                     </ul>
             </li>
-            <li class="treeview">
-                <a href="#"><i class='fa fa-archive'></i> <span>Repositorio Personal</span> <span
-                            class="pull-right-container">
-
- <small class="label bg-blue"><i class="fa fa-smile-o"> </i></small>            </span>
-                    <ul class="treeview-menu">
-                        <li><a href="/"><i class="fa fa-envelope-o"></i> Documentos Recibidos</a></li>
-                    </ul>
-            </li>
             <li class="header">- TRAMITACIÓN INTERNA DIGITAL -</li>
-
-            <li class="treeview">
-                <a href="#"><i class='fa fa-dollar'></i> <span>Depto. FAO</span> <i
-                            class="fa fa-angle-down pull-right"></i></a>
-                <ul class="treeview-menu">
-                    <li><a href="/"><i class="fa fa-file-pdf-o"></i> Próximamente</a></li>
-                    <li><a href="/"><i class="fa fa-plus-circle"></i> -</a></li>
-                </ul>
-            </li>
-            <li class="treeview">
-                <a href="#"><i class='fa fa-users'></i> <span>Depto. DGDP</span> <i
-                            class="fa fa-angle-down pull-right"></i></a>
-                <ul class="treeview-menu">
-                    <li><a href="/"><i class="fa fa-file-pdf-o"></i> Próximamente</a></li>
-                    <li><a href="/"><i class="fa fa-plus-circle"></i> -</a></li>
-                </ul>
-            </li>
-            <li class="treeview">
-                <a href="#"><i class='fa fa-keyboard-o'></i> <span>Unid. Informática</span> <i
-                            class="fa fa-angle-down pull-right"></i></a>
-                <ul class="treeview-menu">
-                    <li><a href="/"><i class="fa fa-file-pdf-o"></i> Próximamente</a></li>
-                    <li><a href="/"><i class="fa fa-plus-circle"></i> -</a></li>
-                </ul>
-            </li>
-
-            <li class="treeview">
-                <a href="#"><i class='fa fa-wrench'></i> <span>Unid. Operaciones</span> <i
-                            class="fa fa-angle-down pull-right"></i></a>
-                <ul class="treeview-menu">
-                    <li><a href="/"><i class="fa fa-file-pdf-o"></i> Próximamente</a></li>
-                    <li><a href="/"><i class="fa fa-plus-circle"></i> -</a></li>
-                </ul>
-            </li>
 
             <li class="header">- OPCIONES DEL SISTEMA -</li>
             <li class="treeview">
                 <a href="#"><i class='fa fa-gears'></i> <span>Mi Perfil</span> <i
                             class="fa fa-angle-down pull-right"></i></a>
                 <ul class="treeview-menu">
-                    <li><a href="/"><i class="fa fa-file-pdf-o"></i> Proximamente</a></li>
-                    <li><a href="/"><i class="fa fa-file-pdf-o"></i> -</a></li>
+                    <li><a href="/Perfil"><i class="fa fa-user"></i> Mi Perfil</a></li>
                 </ul>
             </li>
             <li><a href="/Versiones"><i class='fa fa-code'></i> <span>Control de Versiones</span> <small
