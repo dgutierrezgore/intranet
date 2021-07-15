@@ -17,7 +17,7 @@
                     <small class="label bg-blue"><i class="fa fa-smile-o"> </i></small></span>
                     <ul class="treeview-menu">
                         <li><a href="/Partes"><i class="fa fa-file-pdf-o"></i> Documentos Internos</a></li>
-                        <li><a href="/Documentos2020"><i class="fa fa-archive"></i> Documentos Internos 2020</a></li>
+                        <li><a href="/Documentos2020"><i class="fa fa-archive"></i> Archivo 2020 - 2021</a></li>
                         <li><a href="/DocsTags"><i class="fa fa-tags"></i> Búsqueda por Tags</a></li>
                     </ul>
             </li>

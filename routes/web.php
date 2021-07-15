@@ -27,7 +27,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/Versiones', 'DocumentosInternosController@versiones');
     Route::post('/GrillaTags', 'DocumentosInternosController@listado_tags');
+
     Route::get('/Documentos2020', 'DocumentosInternosController@archivo2020');
+    route::post('/FichaDocsIntH', 'DocumentosInternosController@ficha_docs_interno_historico');
 
     Route::get('/UnidInformatica/Biblioteca', 'UnidadInformaticaController@documentos_publicos');
     Route::get('/UnidInformatica/Reservas', 'UnidadInformaticaController@reservas');

@@ -44,8 +44,8 @@
 
                 <div class="panel panel-warning">
                     <div class="panel-heading">
-                        <i class="fa fa-newspaper-o"></i> <strong>Cuadro Panel de Novedades al 04 de Enero 2021</strong>
-                        <small>V.03</small>
+                        <i class="fa fa-newspaper-o"></i> <strong>Cuadro Panel de Novedades al 15 de Julio 2021</strong>
+                        <small>V1.0</small>
                     </div>
 
                     <div class="panel-body">
@@ -58,7 +58,7 @@
                     </div>
                     <div class="panel-body">
                         <ul>
-                            <i class="fa fa-check"></i> Se incorpora el año 2021 y bandeja archivo de documentos 2020.
+                            <i class="fa fa-check"></i> Se reinicia el folio, y se archivan los documentos 2021 y 2020.
                         </ul>
                     </div>
                 </div>

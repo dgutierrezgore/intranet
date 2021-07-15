@@ -9,7 +9,7 @@
 @endsection
 
 @section('contentheader_description')
-    - Grilla 2020
+    - Grilla 2020 - 2021
 @endsection
 
 @section('main-content')
@@ -61,7 +61,7 @@
                                                         </td>
                                                         <td>
                                                             <center>
-                                                                <form action='/FichaDocsInt' method='POST'>
+                                                                <form action='/FichaDocsIntH' method='POST'>
                                                                     <input type='hidden' name='_token'
                                                                            value="{{ csrf_token() }}">
                                                                     <input type='hidden' name='apertura'
@@ -120,7 +120,7 @@
                                                                 </center>
                                                             @endif
                                                             <center>
-                                                                <form action='/FichaDocsInt' method='POST'>
+                                                                <form action='/FichaDocsIntH' method='POST'>
                                                                     <input type='hidden' name='_token'
                                                                            value="{{ csrf_token() }}">
                                                                     <input type='hidden' name='apertura'
@@ -173,7 +173,7 @@
                                                         <td>{{ $listado->fechadocint }}</td>
                                                         <td>
                                                             <center>
-                                                                <form action='/FichaDocsInt' method='POST'>
+                                                                <form action='/FichaDocsIntH' method='POST'>
                                                                     <input type='hidden' name='_token'
                                                                            value="{{ csrf_token() }}">
                                                                     <input type='hidden' name='apertura'

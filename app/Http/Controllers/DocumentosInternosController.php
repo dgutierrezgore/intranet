@@ -352,10 +352,10 @@ class DocumentosInternosController extends Controller
 
         // Documentos Propios
 
-        $docs_propios = DB::table('op_lec_doc_int')
+        $docs_propios = DB::connection('historico')->table('op_lec_doc_int')
             ->join('op_documentos_internos', 'op_documentos_internos.iddocint', 'op_lec_doc_int.op_documentos_internos_iddocint')
             ->join('op_tipos_docs_internos', 'op_tipos_docs_internos.iddocsint', 'op_documentos_internos.tipos_docs_internos_iddocsint')
-            ->whereYear('op_documentos_internos.fechadocint', '2020')
+            //->whereYear('op_documentos_internos.fechadocint', '2020')
             ->where([
                 ['op_lec_doc_int.listado_funcionarios_idfunc', $id_func],
                 ['estadolectdocint', 1],
@@ -364,10 +364,10 @@ class DocumentosInternosController extends Controller
             ->orderby('fechadocint', 'desc')
             ->get();
 
-        $docs_dist = DB::table('op_lec_doc_int')
+        $docs_dist = DB::connection('historico')->table('op_lec_doc_int')
             ->join('op_documentos_internos', 'op_documentos_internos.iddocint', 'op_lec_doc_int.op_documentos_internos_iddocint')
             ->join('op_tipos_docs_internos', 'op_tipos_docs_internos.iddocsint', 'op_documentos_internos.tipos_docs_internos_iddocsint')
-            ->whereYear('op_documentos_internos.fechadocint', '2020')
+            //->whereYear('op_documentos_internos.fechadocint', '2020')
             ->where([
                 ['op_lec_doc_int.listado_funcionarios_idfunc', $id_func],
                 ['estadolectdocint', 1],
@@ -376,10 +376,10 @@ class DocumentosInternosController extends Controller
             ->orderby('fechadocint', 'desc')
             ->get();
 
-        $docs_copia = DB::table('op_lec_doc_int')
+        $docs_copia = DB::connection('historico')->table('op_lec_doc_int')
             ->join('op_documentos_internos', 'op_documentos_internos.iddocint', 'op_lec_doc_int.op_documentos_internos_iddocint')
             ->join('op_tipos_docs_internos', 'op_tipos_docs_internos.iddocsint', 'op_documentos_internos.tipos_docs_internos_iddocsint')
-            ->whereYear('op_documentos_internos.fechadocint', '2020')
+            //->whereYear('op_documentos_internos.fechadocint', '2020')
             ->where([
                 ['op_lec_doc_int.listado_funcionarios_idfunc', $id_func],
                 ['estadolectdocint', 1],
@@ -392,6 +392,110 @@ class DocumentosInternosController extends Controller
             'docs_propios' => $docs_propios,
             'docs_dist' => $docs_dist,
             'docs_copia' => $docs_copia
+        ]);
+
+    }
+
+    public
+    function ficha_docs_interno_historico(Request $request)
+    {
+
+        $id_func = Auth::user()->idunicfunc;
+
+        $grilla_1 = $request->apertura;
+        $id = $request->idficdocint;
+
+        if ($grilla_1 == 1) {
+            DB::connection('historico')->table('op_lec_doc_int')
+                ->where([
+                    ['op_documentos_internos_iddocint', $id],
+                    ['listado_funcionarios_idfunc', $id_func],
+                    ['prilecfundocint', null]
+                ])
+                ->update([
+                    'lectfuncdocint' => 1,
+                    'prilecfundocint' => date('Y-m-d H:i:s'),
+                ]);
+        }
+
+        $tipo_doc = DB::connection('historico')->table('op_documentos_internos')
+            ->select('tipos_docs_internos_iddocsint')
+            ->where('iddocint', '=', $id)
+            ->get();
+
+        if ($tipo_doc[0]->tipos_docs_internos_iddocsint == 1) {
+            $bitacora = DB::connection('historico')->table('op_documentos_internos')
+                ->join('op_bitacora_docs_internos', 'op_documentos_internos.iddocint', 'op_bitacora_docs_internos.documentos_internos_iddocint')
+                ->join('op_tipos_docs_internos', 'op_tipos_docs_internos.iddocsint', 'op_documentos_internos.tipos_docs_internos_iddocsint')
+                ->join('listado_funcionarios', 'listado_funcionarios.idfunc', 'op_documentos_internos.listado_funcionarios_idfunc')
+                ->join('users', 'users.id', 'op_documentos_internos.users_id')
+                ->where('iddocint', '=', $id)
+                ->orderby('op_bitacora_docs_internos.idbitdocint', 'DESC')
+                ->get();
+
+        } elseif ($tipo_doc[0]->tipos_docs_internos_iddocsint == 2) {
+            $bitacora = DB::connection('historico')->table('op_documentos_internos')
+                ->join('op_bitacora_docs_internos', 'op_documentos_internos.iddocint', 'op_bitacora_docs_internos.documentos_internos_iddocint')
+                ->join('op_tipos_docs_internos', 'op_tipos_docs_internos.iddocsint', 'op_documentos_internos.tipos_docs_internos_iddocsint')
+                ->join('users', 'users.id', 'op_documentos_internos.users_id')
+                ->where('iddocint', '=', $id)
+                ->orderby('op_bitacora_docs_internos.idbitdocint', 'DESC')
+                ->get();
+        } elseif ($tipo_doc[0]->tipos_docs_internos_iddocsint == 3) {
+            $bitacora = DB::connection('historico')->table('op_documentos_internos')
+                ->join('op_bitacora_docs_internos', 'op_documentos_internos.iddocint', 'op_bitacora_docs_internos.documentos_internos_iddocint')
+                ->join('op_tipos_docs_internos', 'op_tipos_docs_internos.iddocsint', 'op_documentos_internos.tipos_docs_internos_iddocsint')
+                ->join('users', 'users.id', 'op_documentos_internos.users_id')
+                ->where('iddocint', '=', $id)
+                ->orderby('op_bitacora_docs_internos.idbitdocint', 'DESC')
+                ->get();
+        }
+
+        $dist_interna = DB::connection('historico')->table('op_det_dist_docs_int')
+            ->join('op_grupos_dis_internos', 'op_grupos_dis_internos.idgrpdisint', 'op_det_dist_docs_int.grupos_dis_internos_idgrpdisint')
+            ->select('nomgrpdisint')
+            ->where('documentos_internos_iddocint', $id)
+            ->get();
+
+        $dist_externa = DB::connection('historico')->table('op_det_dist_docs_ext')
+            ->join('op_grupos_dis_externos', 'op_grupos_dis_externos.idgrpdisext', 'op_det_dist_docs_ext.grupos_dis_externos_idgrpdisext')
+            ->where('documentos_internos_iddocint', $id)
+            ->get();
+
+        $pdf = DB::connection('historico')->table('op_documentos_internos')
+            ->where('iddocint', '=', $id)
+            ->first();
+
+        $bit_pers = DB::connection('historico')->table('op_documentos_internos')
+            ->join('op_bitacora_docs_internos', 'op_documentos_internos.iddocint', 'op_bitacora_docs_internos.documentos_internos_iddocint')
+            ->where([
+                ['iddocint', '=', $id],
+                ['tipoaccbitdocint', 5],
+                ['op_bitacora_docs_internos.users_id', Auth::id()]
+            ])
+            ->orderby('op_bitacora_docs_internos.idbitdocint', 'DESC')
+            ->get();
+
+        $mis_tags = DB::connection('historico')->table('op_mis_tags')
+            ->where('users_id', '=', Auth::id())
+            ->get();
+
+        $tag_docu = DB::connection('historico')->table('op_tag_docs_int')
+            ->join('op_mis_tags', 'op_mis_tags.idmistags', 'op_tag_docs_int.op_mis_tags_idmistags')
+            ->where([
+                ['op_documentos_internos_iddocint', '=', $id],
+                ['op_mis_tags_users_id', Auth::id()]
+            ])
+            ->get();
+
+        return view('back_end.arcdig.fic_doc_int', [
+            'bitacora' => $bitacora,
+            'dis_int' => $dist_interna,
+            'dis_ext' => $dist_externa,
+            'pdf' => $pdf,
+            'bit_pers' => $bit_pers,
+            'mis_tags' => $mis_tags,
+            'tag_docu' => $tag_docu
         ]);
 
     }

@@ -4,9 +4,9 @@
     <!-- Logo -->
     <a href="{{ url('/home') }}" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>A</b>LT</span>
+        <span class="logo-mini"><b>GORE</b></span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><p><strong>Intranet </strong><small>V.03</small></p></span>
+        <span class="logo-lg"><p><strong>Intranet </strong><small>V.1.0</small></p></span>
     </a>
 
     <!-- Header Navbar -->
@@ -17,5 +17,4 @@
         </a>
         <!-- Navbar Right Menu -->
     </nav>
-
 </header>
