@@ -66,7 +66,7 @@
 
         <div class="box2 gris der">
                 <span>
-                    Si desea recuperar su contraseña<br/>
+                    Solicitar Contraseña<br/>
                     <a href="/password/reset" id="btnRecoverPassword">Pídela aquí » </a>
                 </span>
         </div>
